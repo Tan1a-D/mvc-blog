@@ -7,25 +7,30 @@ final class MainController
 
     public function index(): void
     {
-        $this->render('home.php', 'Мой блог');
+        $this->render('home.php');
     }
 
     public function aboutMe(): void
     {
-        $this->render('about.php', 'Обо мне');
+        $this->render('about.php', ['title' => 'Обо мне']);
     }
 
     public function sayBye(string $name): void
     {
-        $this->render('bye.php', 'До встречи', ['name' => $name]);
+        $this->render('bye.php', ['title' => 'До встречи', 'name' => $name]);
+    }
+
+    public function sayHello(string $name): void
+    {
+        $this->render('hello.php', ['title' => 'Страница приветствия', 'name' => $name]);
     }
 
     public function error(string $message): void
     {
-        $this->render('error.php', 'Ошибка', ['message' => $message]);
+        $this->render('error.php', ['title' => 'Ошибка', 'message' => $message]);
     }
 
-    private function render(string $template, string $title, array $data = []): void
+    private function render(string $template, array $data = []): void
     {
         $basePath = $this->basePath;
         $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

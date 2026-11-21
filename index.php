@@ -15,15 +15,16 @@ $routes = [
     '~^/$~' => 'index',
     '~^/about-me/?$~' => 'aboutMe',
     '~^/bye/([^/]+)/?$~u' => 'sayBye',
+    '~^/hello/([^/]+)/?$~u' => 'sayHello',
 ];
 foreach ($routes as $pattern => $action) {
     if (preg_match($pattern, $path, $matches) !== 1) continue;
-    if ($action === 'sayBye') {
+    if (in_array($action, ['sayBye', 'sayHello'], true)) {
         $name = rawurldecode($matches[1]);
         if (preg_match('//u', $name) !== 1 || preg_match('/[[:cntrl:]]/u', $name) || str_contains($name, '/') || str_contains($name, chr(92)) || trim($name) === '' || strlen($name) > 400) {
             http_response_code(400); $controller->error('Некорректное имя'); exit;
         }
-        $controller->sayBye($name);
+        $controller->$action($name);
     } else { $controller->$action(); }
     exit;
 }

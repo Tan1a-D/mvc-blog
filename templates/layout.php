@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $escape($title) ?></title>
+    <title><?= $escape($title ?? 'Мой блог') ?></title>
     <link rel="stylesheet" href="<?= $escape($basePath) ?>/styles/styles.css">
 </head>
 <body>
@@ -17,6 +17,7 @@
             <ul>
                 <li><a href="<?= $escape($basePath) ?>/">Главная страница</a></li>
                 <li><a href="<?= $escape($basePath) ?>/about-me">Обо мне</a></li>
+                <li><a href="<?= $escape($basePath) ?>/hello/username">Страница приветствия</a></li>
                 <li><a href="<?= $escape($basePath) ?>/bye/<?= rawurlencode('Татьяна') ?>">Попрощаться с Татьяной</a></li>
             </ul>
         </td>
