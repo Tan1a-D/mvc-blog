@@ -32,12 +32,6 @@ final class MainController
 
     private function render(string $template, array $data = []): void
     {
-        $basePath = $this->basePath;
-        $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-        extract($data, EXTR_SKIP);
-        ob_start();
-        require dirname(__DIR__, 2) . '/templates/' . $template;
-        $content = ob_get_clean();
-        require dirname(__DIR__, 2) . '/templates/layout.php';
+        View::render($this->basePath, $template, $data);
     }
 }

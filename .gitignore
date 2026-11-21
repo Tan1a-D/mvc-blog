@@ -1,2 +1,7 @@
 .DS_Store
 *.log
+
+db.local.php
+*.sqlite
+mvc-blog-*-site.zip
+mvc-blog-*-site/
